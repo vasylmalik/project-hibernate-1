@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Repository(value = "memory")
 public class PlayerRepositoryMemory implements IPlayerRepository {
 
-    private static final List<Player> storage = new CopyOnWriteArrayList<Player>() {{
+    static final List<Player> storage = new CopyOnWriteArrayList<Player>() {{
         add(new Player(1L, "Ниус", "Приходящий Без Шума", Race.HOBBIT, Profession.ROGUE, new Date(1244497480000L), false, 33));
         add(new Player(2L, "Никрашш", "НайтВульф", Race.ORC, Profession.WARRIOR, new Date(1152424240000L), false, 58));
         add(new Player(4L, "Эззэссэль", "шипящая", Race.DWARF, Profession.CLERIC, new Date(1243201400000L), true, 3));
