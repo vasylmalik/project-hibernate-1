@@ -5,17 +5,14 @@ import com.game.entity.Profession;
 import com.game.entity.Race;
 import org.springframework.stereotype.Repository;
 
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 @Repository(value = "memory")
 public class PlayerRepositoryMemory implements IPlayerRepository {
 
-    static final List<Player> storage = new CopyOnWriteArrayList<Player>() {{
+    private static final List<Player> storage = new CopyOnWriteArrayList<Player>() {{
         add(new Player(1L, "Ниус", "Приходящий Без Шума", Race.HOBBIT, Profession.ROGUE, new Date(1244497480000L), false, 33));
         add(new Player(2L, "Никрашш", "НайтВульф", Race.ORC, Profession.WARRIOR, new Date(1152424240000L), false, 58));
         add(new Player(4L, "Эззэссэль", "шипящая", Race.DWARF, Profession.CLERIC, new Date(1243201400000L), true, 3));
@@ -57,6 +54,10 @@ public class PlayerRepositoryMemory implements IPlayerRepository {
         add(new Player(50L, "Ардонг", "Вспышк A", Race.HUMAN, Profession.WARRIOR, new Date(1217537160000L), false, 21));
         add(new Player(52L, "Аттирис", "и.о.Карвандоса", Race.ELF, Profession.SORCERER, new Date(1245050800000L), true, 34));
     }};
+
+    static List<Player> getPlayerList() {
+        return new ArrayList<>(storage);
+    }
 
     @Override
     public List<Player> getAll(int pageNumber, int pageSize) {
