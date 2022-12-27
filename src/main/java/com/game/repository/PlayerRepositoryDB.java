@@ -54,29 +54,37 @@ public class PlayerRepositoryDB implements IPlayerRepository {
     @Override
     public Player save(Player player) {
         try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            session.save(player);
-            transaction.commit();
-            return player;
+            session.beginTransaction();
+            try {
+                session.save(player);
+                session.getTransaction().commit();
+                return player;
+            } catch (RuntimeException e) {
+                session.getTransaction().rollback();
+                throw e;
+            }
         }
     }
 
     @Override
     public Player update(Player player) {
         try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            session.merge(player);
-            transaction.commit();
-            return player;
+            session.beginTransaction();
+            try {
+                session.update(player);
+                session.getTransaction().commit();
+                return player;
+            } catch (RuntimeException e) {
+                session.getTransaction().rollback();
+                throw e;
+            }
         }
     }
 
     @Override
     public Optional<Player> findById(long id) {
         try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
             Player player = session.find(Player.class, id);
-            transaction.commit();
             return Optional.ofNullable(player);
         }
     }
@@ -84,9 +92,14 @@ public class PlayerRepositoryDB implements IPlayerRepository {
     @Override
     public void delete(Player player) {
         try (Session session = sessionFactory.openSession()) {
-            Transaction transaction = session.beginTransaction();
-            session.remove(player);
-            transaction.commit();
+            session.beginTransaction();
+            try {
+                session.remove(player);
+                session.getTransaction().commit();
+            } catch (RuntimeException e) {
+                session.getTransaction().rollback();
+                throw e;
+            }
         }
     }
 
