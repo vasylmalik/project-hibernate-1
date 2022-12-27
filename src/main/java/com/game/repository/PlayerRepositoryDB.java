@@ -20,6 +20,10 @@ public class PlayerRepositoryDB implements IPlayerRepository {
         this.sessionFactory = MySessionFactory.getSessionFactory();
         Session session = sessionFactory.openSession();
         Query query = session.createQuery("select name from Player");
+        fillingDB(query);
+    }
+
+    private void fillingDB(Query query) {
         if (query.list().isEmpty()) {
             for (Player player : PlayerRepositoryMemory.getPlayerList()) {
                 save(player);
@@ -41,7 +45,6 @@ public class PlayerRepositoryDB implements IPlayerRepository {
     @Override
     public int getAllCount() {
         try (Session session = sessionFactory.openSession()) {
-//            Query<Long> query = session.createQuery("select count (*) from Player", Long.class);
             Query<Long> query = session.createNamedQuery("getAllCount",Long.class);
             return Math.toIntExact(query.uniqueResult());
         }
