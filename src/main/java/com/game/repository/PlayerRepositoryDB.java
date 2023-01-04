@@ -46,7 +46,7 @@ public class PlayerRepositoryDB implements IPlayerRepository {
     public int getAllCount() {
         try (Session session = sessionFactory.openSession()) {
             Query<Long> query = session.createNamedQuery("getAllCount",Long.class);
-            return Math.toIntExact(query.uniqueResult());
+            return query.uniqueResult().intValue();
         }
 
     }
