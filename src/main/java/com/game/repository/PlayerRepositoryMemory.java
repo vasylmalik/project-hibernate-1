@@ -69,7 +69,7 @@ public class PlayerRepositoryMemory implements IPlayerRepository {
     }
 
     @Override
-    public int getAllCount() {
+    public long getAllCount() {
         return storage.size();
     }
 

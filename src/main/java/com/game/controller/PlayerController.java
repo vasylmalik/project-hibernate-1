@@ -38,7 +38,7 @@ public class PlayerController {
     }
 
     @GetMapping("/count")
-    public Integer getAllCount() {
+    public long getAllCount() {
         return playerService.getAllCount();
     }
 
