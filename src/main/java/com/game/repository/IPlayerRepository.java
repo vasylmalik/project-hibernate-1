@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface IPlayerRepository {
     List<Player> getAll(int pageNumber, int pageSize);
 
-    int getAllCount();
+    long getAllCount();
 
     Player save(Player player);
 
