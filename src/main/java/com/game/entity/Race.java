@@ -7,5 +7,8 @@ public enum Race {
     GIANT,
     ORC,
     TROLL,
-    HOBBIT
+    HOBBIT;
+
+    Race() {
+    }
 }
