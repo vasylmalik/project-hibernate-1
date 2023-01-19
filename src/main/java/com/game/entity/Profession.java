@@ -8,5 +8,8 @@ public enum Profession {
     PALADIN,
     NAZGUL,
     WARLOCK,
-    DRUID
+    DRUID;
+
+    Profession() {
+    }
 }
