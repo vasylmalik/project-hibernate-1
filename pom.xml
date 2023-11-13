@@ -109,6 +109,27 @@
 			<artifactId>thymeleaf-spring5</artifactId>
 			<version>3.0.15.RELEASE</version>
 		</dependency>
+
+<!--		MYSQL-->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.30</version>
+		</dependency>
+
+<!--		HIBERNATE-->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core-jakarta</artifactId>
+			<version>5.6.11.Final</version>
+		</dependency>
+
+<!--		LOGGER-->
+		<dependency>
+			<groupId>p6spy</groupId>
+			<artifactId>p6spy</artifactId>
+			<version>3.9.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
